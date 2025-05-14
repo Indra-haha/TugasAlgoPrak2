@@ -83,7 +83,7 @@ void insertNodeMiddle(Buku)
     }
     newNode->right = help->right;
     newNode->left = help;
-    
+
     if (help->right != nullptr)
     {
         help->right->left = newNode;
@@ -94,22 +94,30 @@ void insertNodeMiddle(Buku)
 
 void printForward()
 {
-    Node *help = first;
-    while (help != NULL)
+    if (first == nullptr)
     {
-        printf("%s   %d", help->buku.title, help->buku.price);
-        cout << endl;
+        cout << "Tidak ada data buku untuk ditampilkan." << endl;
+        return;
+    }
+    Node *help = first;
+    while (help != nullptr)
+    {
+        cout << help->buku.title << "   " << help->buku.price << endl;
         help = help->right;
     }
 }
 
 void printBackward()
 {
-    Node *help = last;
-    while (help != NULL)
+    if (last == nullptr)
     {
-        printf("%s   %d", help->buku.title, help->buku.price);
-        cout << endl;
+        cout << "Tidak ada data buku untuk ditampilkan." << endl;
+        return;
+    }
+    Node *help = last;
+    while (help != nullptr)
+    {
+        cout << help->buku.title << "   " << help->buku.price << endl; // Gunakan cout untuk mencetak string dan int
         help = help->left;
     }
 }
@@ -172,10 +180,11 @@ int main()
 {
     int pil, pilSubMenuSisip;
     char ulang = 'N', ulangSub = 'N';
-    string hapus;string cari;
+    string hapus;
+    string cari;
+    Buku buku;
     do
     {
-        system("cls");
         ulang = 'N';
         cout << "=== Menu === " << endl;
         cout << "1. Tambahkan Buku" << endl;
@@ -184,12 +193,12 @@ int main()
         cout << "4. Sisip Buku (Depan, Tengah, Belakang) " << endl;
         cout << "5. Hapus Buku" << endl;
         cout << "6. Exit" << endl;
+        cout << "7. tulis file" << endl;
         cout << "Pilih : ";
         cin >> pil;
         switch (pil)
         {
         case 1:
-            system("cls");
             cout << "Masukkan Judul Buku : ";
             cin.ignore();
             getline(cin, buku.title);
@@ -199,7 +208,6 @@ int main()
             ulang = 'Y';
             break;
         case 2:
-            system("cls");
             cout << "1. Tampilkan secara ASC" << endl;
             printForward();
             cout << "2. Tampilkan secara DSC" << endl;
@@ -207,7 +215,6 @@ int main()
             ulang = 'Y';
             break;
         case 3:
-            
             cout << "Masukkan Judul Buku yang dicari : ";
             cin.ignore();
             getline(cin, cari);
@@ -218,7 +225,6 @@ int main()
         case 4:
             do
             {
-                system("cls");
                 ulangSub = 'N';
                 cout << "MENU PILIHAN SISIP BUKU" << endl;
                 cout << "-----------------------" << endl;
@@ -238,20 +244,14 @@ int main()
                 {
                 case 1:
                     insertNodeFront(buku);
-                    cout << "Berhasil!!!";
-                    system("pause");
                     ulang = 'Y';
                     break;
                 case 2:
                     insertNodeMiddle(buku);
-                    cout << "Berhasil!!!";
-                    system("pause");
                     ulang = 'Y';
                     break;
                 case 3:
                     insertNodeBack(buku);
-                    cout << "Berhasil!!!";
-                    system("pause");
                     ulang = 'Y';
                     break;
                 default:
@@ -262,12 +262,11 @@ int main()
             } while (ulangSub == 'Y');
             break;
         case 5:
-            
+
             cout << "Masukkan Judul Buku yang ingin dihapus : ";
             cin.ignore();
             getline(cin, hapus);
             deleteNode(buku, hapus);
-            system("pause");
             ulang = 'Y';
             break;
         case 6:
@@ -279,4 +278,5 @@ int main()
             ulang = 'Y';
         }
     } while (ulang == 'Y');
+    return 0;
 }
