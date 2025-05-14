@@ -16,7 +16,10 @@ struct Node
     Node *left;
 };
 
-struct Node *createNode(Buku)
+int pil, pilSubMenuSisip;
+char ulang = 'N', ulangSub = 'N';
+
+struct Node *createNode(Buku buku)
 {
     Node *newNode = (Node *)malloc(sizeof(Node));
     newNode->buku.title = buku.title;
@@ -41,7 +44,7 @@ int emptyList()
     }
 }
 
-void insertNodeFront(Buku)
+void insertNodeFront(Buku buku)
 {
     Node *newNode = createNode(buku);
     if (emptyList())
@@ -57,7 +60,7 @@ void insertNodeFront(Buku)
     }
 }
 
-void insertNodeBack(Buku)
+void insertNodeBack(Buku buku)
 {
     Node *newNode = createNode(buku);
     if (emptyList())
@@ -73,7 +76,7 @@ void insertNodeBack(Buku)
     }
 }
 
-void insertNodeMiddle(Buku)
+void insertNodeMiddle(Buku buku)
 {
     Node *newNode = createNode(buku);
     Node *help = first;
@@ -122,8 +125,9 @@ void printBackward()
     }
 }
 
-int searchNode(Buku, string cari)
+void searchNode(Buku buku, string cari)
 {
+    Node *newNode = createNode(buku);
     Node *help = first;
     while (help != NULL)
     {
@@ -132,7 +136,6 @@ int searchNode(Buku, string cari)
             cout << "Buku ditemukan" << endl;
             printf("%s   %d", help->buku.title, help->buku.price);
             cout << endl;
-            return 1;
         }
         help = help->right;
     }
@@ -140,11 +143,11 @@ int searchNode(Buku, string cari)
     {
         cout << "Buku tidak ditemukan" << endl;
     }
-    return 0;
 }
 
-int deleteNode(Buku, string hapus)
+void deleteNode(Buku buku, string hapus)
 {
+    Node *newNode = createNode(buku);
     Node *help = first;
     while (help != NULL)
     {
@@ -168,18 +171,14 @@ int deleteNode(Buku, string hapus)
             }
             free(help);
             cout << "Buku berhasil dihapus" << endl;
-            return 1;
         }
         help = help->right;
     }
     cout << "Buku tidak ditemukan" << endl;
-    return 0;
 }
 
 int main()
 {
-    int pil, pilSubMenuSisip;
-    char ulang = 'N', ulangSub = 'N';
     string hapus;
     string cari;
     Buku buku;
