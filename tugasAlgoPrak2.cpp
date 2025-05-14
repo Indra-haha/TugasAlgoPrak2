@@ -16,9 +16,6 @@ struct Node
     Node *left;
 };
 
-int pil, pilSubMenuSisip;
-char ulang = 'N', ulangSub = 'N';
-
 struct Node *createNode(Buku buku)
 {
     Node *newNode = (Node *)malloc(sizeof(Node));
@@ -179,6 +176,8 @@ void deleteNode(Buku buku, string hapus)
 
 int main()
 {
+    int pil, pilSubMenuSisip;
+char ulang = 'N', ulangSub = 'N';
     string hapus;
     string cari;
     Buku buku;
@@ -192,7 +191,6 @@ int main()
         cout << "4. Sisip Buku (Depan, Tengah, Belakang) " << endl;
         cout << "5. Hapus Buku" << endl;
         cout << "6. Exit" << endl;
-        cout << "7. tulis file" << endl;
         cout << "Pilih : ";
         cin >> pil;
         switch (pil)
